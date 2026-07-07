@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мария &amp; Максим — Она сказала «ДА»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Syne:wght@500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<svg class="grain" aria-hidden="true">
+  <filter id="noiseFilter">
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+</svg>
+
+<div class="reel" aria-hidden="true"><div class="reel-fill"></div></div>
+
+<div class="edge left" aria-hidden="true"><span>От первой встречи</span></div>
+<div class="edge right" aria-hidden="true"><span>До общей истории</span></div>
+
+<div class="companion fox-c" aria-hidden="true">
+  <svg viewBox="0 0 400 400"><path fill="currentColor" d="M125.0,25.0 L125.0,25.0 L113.1,46.0 Q108.0,55.0 120.6,61.0 L137.4,69.0 Q150.0,75.0 183.3,81.7 L266.7,98.3 Q300.0,105.0 320.4,121.5 L368.0,160.0 L327.4,181.0 Q310.0,190.0 295.0,194.5 L275.0,200.5 Q260.0,205.0 246.5,224.5 L228.5,250.5 Q215.0,270.0 195.5,289.5 L169.5,315.5 Q150.0,335.0 130.5,344.0 L104.5,356.0 Q85.0,365.0 73.0,351.5 L57.0,333.5 Q45.0,320.0 42.0,293.0 L38.0,257.0 Q35.0,230.0 41.0,200.0 L49.0,160.0 Q55.0,130.0 64.0,109.0 L76.0,81.0 Q85.0,60.0 97.0,49.5 Z"/></svg>
+</div>
+<div class="companion raven-c" aria-hidden="true">
+  <svg viewBox="0 0 400 400"><path fill="currentColor" d="M234.5,222.0 L234.5,222.0 Q260.0,225.0 272.0,231.0 L300.0,245.0 L279.0,259.0 Q270.0,265.0 258.0,272.5 L242.0,282.5 Q230.0,290.0 213.5,299.0 L191.5,311.0 Q175.0,320.0 155.5,327.5 L129.5,337.5 Q110.0,345.0 98.0,343.5 L82.0,341.5 Q70.0,340.0 67.0,328.0 L63.0,312.0 Q60.0,300.0 64.5,286.5 L70.5,268.5 Q75.0,255.0 85.5,246.0 L99.5,234.0 Q110.0,225.0 129.5,222.0 L155.5,218.0 Q175.0,215.0 200.5,218.0 Z"/></svg>
+</div>
+
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <div class="splash-inner">
+    <div class="splash-emblem">
+      <svg viewBox="0 0 400 400">
+        <path fill="#C1592A" d="M125.0,25.0 L125.0,25.0 L113.1,46.0 Q108.0,55.0 120.6,61.0 L137.4,69.0 Q150.0,75.0 183.3,81.7 L266.7,98.3 Q300.0,105.0 320.4,121.5 L368.0,160.0 L327.4,181.0 Q310.0,190.0 295.0,194.5 L275.0,200.5 Q260.0,205.0 246.5,224.5 L228.5,250.5 Q215.0,270.0 195.5,289.5 L169.5,315.5 Q150.0,335.0 130.5,344.0 L104.5,356.0 Q85.0,365.0 73.0,351.5 L57.0,333.5 Q45.0,320.0 42.0,293.0 L38.0,257.0 Q35.0,230.0 41.0,200.0 L49.0,160.0 Q55.0,130.0 64.0,109.0 L76.0,81.0 Q85.0,60.0 97.0,49.5 Z"/>
+        <ellipse cx="325" cy="148" rx="6" ry="9" fill="#0D0B0A" transform="rotate(35 325 148)"/>
+        <path fill="#1E1B18" d="M234.5,222.0 L234.5,222.0 Q260.0,225.0 272.0,231.0 L300.0,245.0 L279.0,259.0 Q270.0,265.0 258.0,272.5 L242.0,282.5 Q230.0,290.0 213.5,299.0 L191.5,311.0 Q175.0,320.0 155.5,327.5 L129.5,337.5 Q110.0,345.0 98.0,343.5 L82.0,341.5 Q70.0,340.0 67.0,328.0 L63.0,312.0 Q60.0,300.0 64.5,286.5 L70.5,268.5 Q75.0,255.0 85.5,246.0 L99.5,234.0 Q110.0,225.0 129.5,222.0 L155.5,218.0 Q175.0,215.0 200.5,218.0 Z"/>
+        <circle cx="283" cy="248" r="4.5" fill="#C1592A"/>
+      </svg>
+    </div>
+    <p class="splash-names">Мария <span style="color:var(--gold)">&amp;</span> Максим</p>
+    <p class="eyebrow">Свадьба · 20.08.2026</p>
+    <p class="splash-msg">Здравствуй. Это приглашение — начало нашей истории, рассказанной по кадрам.</p>
+    <button class="enter-btn" id="enterBtn">Открыть приглашение</button>
+    <p class="splash-hint">Со звуком — красивее</p>
+  </div>
+</div>
+
+<header>
+  <div class="meta-row">
+    <span>Свадьба Марии и Максима</span>
+    <span>20 · 08 · 2026</span>
+  </div>
+  <nav class="nav-row">
+    <a href="#timing">Тайминг</a>
+    <a href="#locations">Локации</a>
+    <a href="#dress">Дресс-код</a>
+    <a href="#gifts">Подарки</a>
+    <a href="#rsvp">Анкета</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="embrace" aria-hidden="true">
+    <svg viewBox="0 0 400 400">
+      <path fill="#C1592A" d="M125.0,25.0 L125.0,25.0 L113.1,46.0 Q108.0,55.0 120.6,61.0 L137.4,69.0 Q150.0,75.0 183.3,81.7 L266.7,98.3 Q300.0,105.0 320.4,121.5 L368.0,160.0 L327.4,181.0 Q310.0,190.0 295.0,194.5 L275.0,200.5 Q260.0,205.0 246.5,224.5 L228.5,250.5 Q215.0,270.0 195.5,289.5 L169.5,315.5 Q150.0,335.0 130.5,344.0 L104.5,356.0 Q85.0,365.0 73.0,351.5 L57.0,333.5 Q45.0,320.0 42.0,293.0 L38.0,257.0 Q35.0,230.0 41.0,200.0 L49.0,160.0 Q55.0,130.0 64.0,109.0 L76.0,81.0 Q85.0,60.0 97.0,49.5 Z"/>
+      <path fill="#1E1B18" d="M234.5,222.0 L234.5,222.0 Q260.0,225.0 272.0,231.0 L300.0,245.0 L279.0,259.0 Q270.0,265.0 258.0,272.5 L242.0,282.5 Q230.0,290.0 213.5,299.0 L191.5,311.0 Q175.0,320.0 155.5,327.5 L129.5,337.5 Q110.0,345.0 98.0,343.5 L82.0,341.5 Q70.0,340.0 67.0,328.0 L63.0,312.0 Q60.0,300.0 64.5,286.5 L70.5,268.5 Q75.0,255.0 85.5,246.0 L99.5,234.0 Q110.0,225.0 129.5,222.0 L155.5,218.0 Q175.0,215.0 200.5,218.0 Z"/>
+    </svg>
+  </div>
+  <div id="bokehLayer" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <p class="eyebrow">Пролог одной истории</p>
+    <div class="hero-title">
+      <span class="line1">Она сказала</span>
+      <span class="line2">«ДА»</span>
+    </div>
+    <p class="names">Мария <span style="color:var(--gold)">&amp;</span> Максим</p>
+    <p class="date">20 августа 2026 · Иркутск — Ангарск</p>
+    <p class="scrollcue">Листайте, чтобы читать дальше ↓</p>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown reveal">
+  <span class="eyebrow">До встречи осталось</span>
+  <div class="cd-grid">
+    <div class="cd-box"><span class="cd-num" id="cdDays">00</span><span class="cd-label">дни</span></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><span class="cd-num" id="cdHours">00</span><span class="cd-label">часы</span></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><span class="cd-num" id="cdMins">00</span><span class="cd-label">минуты</span></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-box"><span class="cd-num" id="cdSecs">00</span><span class="cd-label">секунды</span></div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<section class="info-strip reveal">
+  <div class="info-grid">
+    <div class="info-col">
+      <span class="eyebrow">Приглашение</span>
+      <h3>Мы ждём тебя, чтобы разделить этот день</h3>
+      <p>Один день, два города и люди, без которых он был бы неполным.</p>
+    </div>
+    <div class="info-col" style="text-align:right;">
+      <span class="eyebrow">Дата и место</span>
+      <h3>20 августа 2026</h3>
+      <p>Церемония в Иркутске, продолжение — в Ангарске.</p>
+    </div>
+  </div>
+  <a href="#rsvp" class="info-cta">Заполнить<br>анкету</a>
+</section>
+
+<!-- TIMING -->
+<section class="block" id="timing">
+  <div class="reveal">
+    <div class="block-head">
+      <span class="eyebrow">Глава I</span>
+      <h2 class="big-title"><span class="g">Т</span><span class="r">айминг дня</span></h2>
+    </div>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-time">13:00</div>
+        <div class="tl-title">Встреча и выезд в Иркутск</div>
+        <div class="tl-text">Общий путь начинается здесь — собираемся, рассаживаемся и отправляемся навстречу церемонии.</div>
+        <div class="tl-text">Остановка Музей часов г.Ангарск</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">14:30</div>
+        <div class="tl-title">Церемония и прогулка по городу</div>
+        <div class="tl-text">Клятвы, объятия и первые кадры нашей общей истории на улицах Иркутска.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">18:00</div>
+        <div class="tl-title">Праздничный ужин в ресторане «Bretzel», Ангарск</div>
+        <div class="tl-text">Стол, свет и музыка — вечер длиною в целую жизнь.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">00:00</div>
+        <div class="tl-title">Завершение вечера</div>
+        <div class="tl-text">Титры ещё не идут — но ночь просит паузы.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="block alt" id="locations">
+  <div class="reveal">
+    <div class="block-head">
+      <span class="eyebrow">Глава II</span>
+      <h2 class="big-title"><span class="g">Л</span><span class="r">окации</span></h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <p class="eyebrow">Церемония</p>
+        <h3>Иркутск</h3>
+        <p>Здесь прозвучат слова, после которых мы станем семьёй.</p>
+        <p style="opacity:.5; font-size:0.88rem;">Точный адрес уточним ближе к дате</p>
+        <button><a href="https://2gis.ru/irkutsk/geo/1548748027091268?immersive=on">Получить маршрут </button></a>
+      </div>
+      <div class="loc-card">
+        <p class="eyebrow">Банкет</p>
+        <h3>«Bretzel», Ангарск</h3>
+        <p>Ресторан, где день продолжится вечером — с ужином, тостами и танцами.</p>
+        <p style="opacity:.5; font-size:0.88rem;">Точный адрес уточним ближе к дате</p>
+        <button> <a href="https://2gis.ru/angarsk/search/%D0%B0%D0%BD%D0%B3%D0%B0%D1%80%D1%81%D0%BA%20bretzel/firm/70000001060463745/103.890756%2C52.544062?m=103.890094%2C52.533322%2F11.33&immersive=on">Получить маршрут</a></button>
+        </div>
+      </div>
+    </div>
+    <div class="route">
+      <svg viewBox="0 0 700 140" aria-hidden="true">
+        <circle cx="90" cy="70" r="6" fill="#B99A63"/>
+        <text x="90" y="105" text-anchor="middle" font-family="Syne" font-weight="600" font-size="12" letter-spacing="1.5" fill="#F3EEE4" opacity="0.7">ИРКУТСК</text>
+        <circle cx="610" cy="70" r="6" fill="#B99A63"/>
+        <text x="610" y="105" text-anchor="middle" font-family="Syne" font-weight="600" font-size="12" letter-spacing="1.5" fill="#F3EEE4" opacity="0.7">АНГАРСК</text>
+        <path d="M105 70 Q 350 10 595 70" fill="none" stroke="#B99A63" stroke-width="1.2" stroke-dasharray="2 8" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- DRESS CODE -->
+<section class="block dress" id="dress">
+  <div class="reveal">
+    <div class="block-head">
+      <span class="eyebrow">Глава III</span>
+      <h2 class="big-title" style="justify-content:center;"><span class="g">Д</span><span class="r">ресс-код</span></h2>
+    </div>
+    <p class="desc">Белый в этот день носят молодожёны — Мария и Максим, поэтому, пожалуйста, оставьте его в шкафу вместе с чёрным. Гостей мы будем счастливы видеть в элегантных вечерних костюмах и платьях. А если в образе найдётся место для броши с лисой или вороном, мы будем этому особенно рады.</p>
+    <div class="swatches">
+      <div class="swatch"><div class="dot" style="background:#C0392B;"></div><div class="label">Алый</div></div>
+      <div class="swatch"><div class="dot" style="background:#7A2036;"></div><div class="label">Гранатовый</div></div>
+      <div class="swatch"><div class="dot" style="background:#5C1A28;"></div><div class="label">Бордовый</div></div>
+      <div class="swatch"><div class="dot" style="background:#4A4642;"></div><div class="label">Графитовый</div></div>
+      <div class="swatch"><div class="dot" style="background:#B9B4AA;"></div><div class="label">Жемчужно-серый</div></div>
+    </div>
+    <p class="no-colors">Белый — для молодожёнов · Чёрный лучше оставить дома</p>
+  </div>
+</section>
+
+<!-- GIFTS -->
+<section class="block alt gifts" id="gifts">
+  <div class="reveal wrap">
+    <div class="block-head">
+      <span class="eyebrow">Глава IV</span>
+      <h2 class="big-title"><span class="g">П</span><span class="r">одарки</span></h2>
+    </div>
+    <div class="gift-item">
+      <p>Самый дорогой подарок для нас — это вы рядом, в этот день. Если появится желание порадовать нас чем-то ещё, будем невероятно благодарны за вклад в наш общий бюджет — вместо цветов, которые, увы, не задерживаются надолго.</p>
+    </div>
+    <div class="gift-item">
+      <p>А если в добавок к деньгам хочется подарить что-то, что можно подержать в руках — пусть это будет бутылка хорошего вина, с подписанным на ней поводом и датой, когда её открыть. Например: «за рождение первенца», «на пятую годовщину», «в день, когда достроим дом». Так постепенно соберётся наш погреб памяти — и однажды мы откроем его вместе с вами. Кстати, Максим любит красное сухое большой тройки.</p>
+    </div>
+    <div class="gift-item">
+      <p>А если и это не ваш вариант - подарите в добавок к деньгам что-то из нашего вишлиста.</p>
+      <a class="wishlist-btn" href="https://followish.io/mywishlist/m70tvq22rfbehp" target="_blank" rel="noopener">Открыть вишлист</a>
+    </div>
+  </div>
+</section>
+
+<!-- GUESTS -->
+<section class="block guests" id="guests">
+  <div class="reveal wrap">
+    <div class="block-head">
+      <span class="eyebrow">Глава V</span>
+      <h2 class="big-title"><span class="g">Г</span><span class="r">остям</span></h2>
+    </div>
+    <div class="guest-item">
+      <div class="mark">—</div>
+      <p>Если так будет удобно — нам будет особенно тепло, если в этот вечер рядом окажутся только те, кого мы хорошо знаем и любим.</p>
+    </div>
+    <div class="guest-item">
+      <div class="mark">—</div>
+      <p>Вечер обещает быть по-настоящему взрослым — с музыкой и разговорами допоздна. Если детям в такой обстановке будет скучновато, возможно, им будет уютнее провести это время с бабушками или няней, а вам — просто побыть друг с другом.</p>
+    </div>
+    <div class="guest-item">
+      <div class="mark">—</div>
+      <p>Банкет будет проходить на открытой площадке, поэтому рекомендуем взять с собой теплые вещи на вечер и удобную обувь.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAREWELL -->
+<section class="farewell">
+  <div class="reveal union">
+    <svg viewBox="0 0 400 400" aria-hidden="true">
+      <path fill="#C1592A" d="M125.0,25.0 L125.0,25.0 L113.1,46.0 Q108.0,55.0 120.6,61.0 L137.4,69.0 Q150.0,75.0 183.3,81.7 L266.7,98.3 Q300.0,105.0 320.4,121.5 L368.0,160.0 L327.4,181.0 Q310.0,190.0 295.0,194.5 L275.0,200.5 Q260.0,205.0 246.5,224.5 L228.5,250.5 Q215.0,270.0 195.5,289.5 L169.5,315.5 Q150.0,335.0 130.5,344.0 L104.5,356.0 Q85.0,365.0 73.0,351.5 L57.0,333.5 Q45.0,320.0 42.0,293.0 L38.0,257.0 Q35.0,230.0 41.0,200.0 L49.0,160.0 Q55.0,130.0 64.0,109.0 L76.0,81.0 Q85.0,60.0 97.0,49.5 Z"/>
+      <ellipse cx="325" cy="148" rx="6" ry="9" fill="#0D0B0A" transform="rotate(35 325 148)"/>
+      <path fill="#1E1B18" d="M234.5,222.0 L234.5,222.0 Q260.0,225.0 272.0,231.0 L300.0,245.0 L279.0,259.0 Q270.0,265.0 258.0,272.5 L242.0,282.5 Q230.0,290.0 213.5,299.0 L191.5,311.0 Q175.0,320.0 155.5,327.5 L129.5,337.5 Q110.0,345.0 98.0,343.5 L82.0,341.5 Q70.0,340.0 67.0,328.0 L63.0,312.0 Q60.0,300.0 64.5,286.5 L70.5,268.5 Q75.0,255.0 85.5,246.0 L99.5,234.0 Q110.0,225.0 129.5,222.0 L155.5,218.0 Q175.0,215.0 200.5,218.0 Z"/>
+      <circle cx="283" cy="248" r="4.5" fill="#C1592A"/>
+    </svg>
+  </div>
+  <p class="reveal msg">Спасибо, что ты часть этого путешествия. Пусть 20 августа станет тёплым кадром не только для нас, но и для тебя. До встречи — в Иркутске, в Ангарске, в нашей общей истории.</p>
+  <p class="reveal sig">Мария &amp; Максим</p>
+  <p class="reveal fdate">20 · 08 · 2026</p>
+</section>
+
+<!-- RSVP — moved to the very end -->
+<section class="block alt rsvp" id="rsvp">
+  <div class="reveal">
+    <div class="block-head">
+      <span class="eyebrow">P.S.</span>
+      <h2 class="big-title" style="justify-content:center;"><span class="g">А</span><span class="r">нкета гостя</span></h2>
+      <p class="sub">Прежде чем закрыть страницу — расскажи, будешь ли ты с нами. Это займёт меньше минуты.</p>
+    </div>
+
+    <form class="rsvpform" id="rsvpform">
+      <input type="hidden" name="_subject" value="Свадебный опрос">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+
+      <div class="field">
+        <label class="q" for="name">Как тебя зовут?</label>
+        <input type="text" id="name" name="Гость" required autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label class="q">Ты с нами?</label>
+        <div class="options" role="radiogroup" aria-label="Ты с нами">
+          <label class="opt"><input type="radio" name="Придёт / не придёт" value="Да" required><span>Да</span></label>
+          <label class="opt"><input type="radio" name="Придёт / не придёт" value="Нет"><span>Нет</span></label>
+          <label class="opt"><input type="radio" name="Придёт / не придёт" value="Пока думаю"><span>Пока думаю</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q">Формат участия</label>
+        <div class="options" role="radiogroup" aria-label="Формат участия">
+          <label class="opt"><input type="radio" name="Едет / не едет в Иркутск" value="Едет — на церемонию и прогулку" required><span>Еду в Иркутск, на церемонию и прогулку</span></label>
+          <label class="opt"><input type="radio" name="Едет / не едет в Иркутск" value="Не едет — только банкет в Ангарске"><span>Буду только на торжестве в ресторане</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="q" for="notes">Особые пожелания по еде</label>
+        <textarea id="notes" name="Особые пожелания" placeholder="Аллергия, вегетарианство и т.д."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Отправить</button>
+      <p class="form-note">Ответ сохранится и будет виден Марии и Максиму</p>
+    </form>
+    <p class="thanks" id="thanks">Спасибо! Мы уже отмечаем твоё имя в списке гостей этой истории.</p>
+  </div>
+</section>
+
+<button class="music-toggle" id="musicToggle" aria-label="Включить фоновую музыку" title="Фоновая музыка">
+  <div class="bars"><span></span><span></span><span></span></div>
+</button>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="music/Hippie Sabotage cover - Demon Eyes.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  /* ---------- scroll progress + companions ---------- */
+  function onScroll(){
+    var max = document.body.scrollHeight - window.innerHeight;
+    var frac = max > 0 ? window.scrollY / max : 0;
+    frac = Math.min(1, Math.max(0, frac));
+    root.style.setProperty('--scroll', frac.toFixed(3));
+  }
+  if(reduceMotion){ root.style.setProperty('--scroll', 0.5); }
+  else{ window.addEventListener('scroll', onScroll, {passive:true}); onScroll(); }
+
+  /* ---------- reveal on scroll ---------- */
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){ if(entry.isIntersecting){ entry.target.classList.add('in-view'); } });
+    }, {threshold:0.16});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* ---------- bokeh particles in hero ---------- */
+  var bokehLayer = document.getElementById('bokehLayer');
+  if(bokehLayer && !reduceMotion){
+    for(var i=0;i<14;i++){
+      var b = document.createElement('div');
+      b.className = 'bokeh';
+      var size = 6 + Math.random()*16;
+      b.style.width = size+'px'; b.style.height = size+'px';
+      b.style.left = (Math.random()*100)+'%';
+      b.style.bottom = (-10 - Math.random()*20)+'%';
+      b.style.animationDuration = (10 + Math.random()*14)+'s';
+      b.style.animationDelay = (Math.random()*10)+'s';
+      bokehLayer.appendChild(b);
+    }
+  }
+
+  /* ---------- countdown to the wedding day (Irkutsk time, UTC+8) ---------- */
+  var WEDDING_TS = new Date("2026-08-20T13:00:00+08:00").getTime();
+  var cdDays = document.getElementById('cdDays');
+  var cdHours = document.getElementById('cdHours');
+  var cdMins = document.getElementById('cdMins');
+  var cdSecs = document.getElementById('cdSecs');
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function updateCountdown(){
+    var diff = Math.max(0, WEDDING_TS - Date.now());
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor((diff%86400000)/3600000);
+    var m = Math.floor((diff%3600000)/60000);
+    var s = Math.floor((diff%60000)/1000);
+    cdDays.textContent = d;
+    cdHours.textContent = pad(h);
+    cdMins.textContent = pad(m);
+    cdSecs.textContent = pad(s);
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ---------- RSVP form: save + email ---------- */
+  var form = document.getElementById('rsvpform');
+  var thanks = document.getElementById('thanks');
+  var submitBtn = document.getElementById('submitBtn');
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправляем…';
+    var fd = new FormData(form);
+    var entry = {
+      name: fd.get('Гость') || '',
+      attending: fd.get('Придёт / не придёт') || '',
+      format: fd.get('Едет / не едет в Иркутск') || '',
+      notes: fd.get('Особые пожелания') || '',
+      ts: Date.now()
+    };
+    try{
+      if(window.storage && window.storage.set){
+        await window.storage.set('rsvp:' + entry.ts, JSON.stringify(entry), true);
+      }
+    }catch(err){ console.error('Не удалось сохранить ответ:', err); }
+
+    try{
+      await fetch('https://formsubmit.co/ajax/v.i.p2004m.a.x@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: fd
+      });
+    }catch(err){ console.error('Не удалось отправить письмо:', err); }
+
+    form.classList.add('hide');
+    thanks.classList.add('show');
+  });
+
+  /* ---------- Background MP3 ---------- */
+
+  var bgMusic = null;
+  var isPlaying = false;
+  var musicToggle = document.getElementById('musicToggle');
+  var fadeTimer = null;
+
+  function initMusic(){
+    bgMusic=document.getElementById('bgMusic');
+    if(!bgMusic) return;
+    bgMusic.volume=0;
+  }
+
+  function fade(target){
+    if(!bgMusic) return;
+    clearInterval(fadeTimer);
+    fadeTimer=setInterval(function(){
+      var v=bgMusic.volume;
+      if(Math.abs(v-target)<0.02){
+        bgMusic.volume=target;
+        if(target===0) bgMusic.pause();
+        clearInterval(fadeTimer);
+        return;
+      }
+      bgMusic.volume=v+(v<target?0.02:-0.02);
+    },30);
+  }
+
+  function startMusic(){
+    if(!bgMusic) initMusic();
+    if(!bgMusic) return;
+    bgMusic.play().catch(()=>{});
+    fade(0.55);
+    isPlaying=true;
+    musicToggle.classList.add('playing');
+  }
+
+  function stopMusic(){
+    if(!bgMusic) return;
+    fade(0);
+    isPlaying=false;
+    musicToggle.classList.remove('playing');
+  }
+
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden && isPlaying) bgMusic.pause();
+    else if(!document.hidden && isPlaying) bgMusic.play().catch(()=>{});
+  });
+
+  initMusic();
+
+  musicToggle.addEventListener('click',function(){
+    isPlaying?stopMusic():startMusic();
+  });
+
+  /* ---------- splash ---------- */
+  var splash = document.getElementById('splash');
+  var enterBtn = document.getElementById('enterBtn');
+  enterBtn.addEventListener('click', function(){
+    splash.classList.add('hide');
+    startMusic();
+  });
+})();
+</script>
+</body>
+</html>
