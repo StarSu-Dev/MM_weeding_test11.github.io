@@ -660,27 +660,45 @@ header {
 }
 
 /* ============ hero ============ */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 5vw 60px;
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
 .embrace {
   position: absolute;
-  bottom: 4%;
+  bottom: 25%;
   left: 50%;
   transform: translateX(-50%);
-  width: min(58vw, 400px);
-  opacity: 0.16;
+  width: min(50vw, 400px);
+  max-width: 400px;
+  opacity: 0.15;
   animation: kenburns 22s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1;
 }
+
 .embrace img {
   width: 100%;
   height: auto;
   display: block;
 }
-@keyframes ghostBreathe {
-  0%,
-  100% {
-    transform: scale(1);
+
+/* Анимация для логотипа */
+@keyframes kenburns {
+  0% {
+    transform: translateX(-50%) scale(1);
   }
-  50% {
-    transform: scale(1.035);
+  100% {
+    transform: translateX(-50%) scale(1.08);
   }
 }
 
@@ -691,7 +709,9 @@ header {
   filter: blur(2px);
   pointer-events: none;
   animation: drift linear infinite;
+  z-index: 1;
 }
+
 @keyframes drift {
   0% {
     transform: translateY(0) translateX(0);
@@ -713,9 +733,10 @@ header {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 2;
   background: radial-gradient(
     ellipse at 50% 40%,
-    transparent 40%,
+    transparent 35%,
     var(--bg-primary) 100%
   );
   transition: background 0.4s ease;
@@ -736,15 +757,18 @@ header {
   align-items: center;
   width: 100%;
 }
+
 .hero .eyebrow {
   margin-bottom: 1.2rem;
 }
+
 .hero-title {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.1rem;
 }
+
 .hero-title .line1 {
   font-family: "Syne";
   font-weight: 600;
@@ -753,15 +777,17 @@ header {
   font-size: clamp(0.8rem, 2.6vw, 1.5rem);
   color: var(--text-dim);
 }
+
 .hero-title .line2 {
   font-family: "Bodoni Moda";
   font-style: italic;
   font-weight: 500;
   color: var(--wine);
-  font-size: clamp(3.5rem, 17vw, 11.5rem);
+  font-size: clamp(4rem, 17vw, 11.5rem);
   line-height: 0.85;
   letter-spacing: 0.01em;
 }
+
 .hero .names {
   margin-top: 1.2rem;
   font-family: "Bodoni Moda";
@@ -769,6 +795,7 @@ header {
   font-size: clamp(1.1rem, 3vw, 2rem);
   color: var(--text-dim);
 }
+
 .hero .date {
   margin-top: 0.6rem;
   font-family: "Syne";
@@ -777,6 +804,7 @@ header {
   font-size: clamp(10px, 1.6vw, 12.5px);
   color: var(--gold);
 }
+
 .scrollcue {
   margin-top: 2.2rem;
   font-family: "Syne";
@@ -788,6 +816,7 @@ header {
   animation: bob 2.6s ease-in-out infinite;
   color: var(--text-primary);
 }
+
 @keyframes bob {
   0%,
   100% {
@@ -797,12 +826,68 @@ header {
     transform: translateY(6px);
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .scrollcue {
     animation: none;
   }
 }
 
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 5vw 40px;
+    min-height: 100vh;
+  }
+
+  .embrace {
+    width: min(60vw, 250px);
+    bottom: 30%;
+    opacity: 0.12;
+  }
+
+  .hero-title .line2 {
+    font-size: clamp(3.5rem, 15vw, 5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 5vw 30px;
+  }
+
+  .embrace {
+    width: min(70vw, 200px);
+    bottom: 2%;
+    opacity: 0.1;
+  }
+
+  .hero-title .line2 {
+    font-size: clamp(2.8rem, 14vw, 4rem);
+  }
+
+  .hero .names {
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  }
+}
+
+/* Для landscape на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: 100vh;
+    padding: 60px 5vw 30px;
+  }
+
+  .embrace {
+    width: min(30vw, 150px);
+    bottom: 2%;
+    opacity: 0.08;
+  }
+
+  .hero-title .line2 {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+}
 /* ============ POLAROID GALLERY ============ */
 .polaroid-gallery {
   position: relative;
