@@ -193,6 +193,7 @@ header {
 
 .nav-row {
   display: none;
+  margin-top: -25px;
 }
 
 .mobile-menu-btn {
