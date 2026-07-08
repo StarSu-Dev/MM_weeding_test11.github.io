@@ -2,7 +2,16 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <meta name="theme-color" content="#0D0B0A" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <title>Мария &amp; Максим — Она сказала «ДА»</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -95,6 +104,21 @@
         <span>20 · 08 · 2026</span>
       </div>
       <nav class="nav-row">
+        <a href="#timing">Тайминг</a>
+        <a href="#locations">Локации</a>
+        <a href="#dress">Дресс-код</a>
+        <a href="#gifts">Подарки</a>
+        <a href="#rsvp">Анкета</a>
+      </nav>
+      <!-- Мобильное меню -->
+      <button
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        aria-label="Открыть меню"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="mobile-nav" id="mobileNav">
         <a href="#timing">Тайминг</a>
         <a href="#locations">Локации</a>
         <a href="#dress">Дресс-код</a>
@@ -538,14 +562,14 @@
                   name="Едет / не едет в Иркутск"
                   value="Едет — на церемонию и прогулку"
                   required
-                /><span>Еду в Иркутск, на церемонию и прогулку</span></label
+                /><span>Еду в Иркутск</span></label
               >
               <label class="opt"
                 ><input
                   type="radio"
                   name="Едет / не едет в Иркутск"
                   value="Не едет — только банкет в Ангарске"
-                /><span>Буду только на торжестве в ресторане</span></label
+                /><span>Только банкет</span></label
               >
             </div>
           </div>
@@ -630,6 +654,28 @@
           localStorage.setItem("theme", newTheme);
         });
 
+        /* ---------- Mobile Menu ---------- */
+        var mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        var mobileNav = document.getElementById("mobileNav");
+        var isMenuOpen = false;
+
+        mobileMenuBtn.addEventListener("click", function () {
+          isMenuOpen = !isMenuOpen;
+          mobileNav.classList.toggle("open");
+          mobileMenuBtn.classList.toggle("active");
+          document.body.style.overflow = isMenuOpen ? "hidden" : "";
+        });
+
+        // Закрываем меню при клике на ссылку
+        mobileNav.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            mobileNav.classList.remove("open");
+            mobileMenuBtn.classList.remove("active");
+            document.body.style.overflow = "";
+            isMenuOpen = false;
+          });
+        });
+
         /* ---------- scroll progress + companions ---------- */
         function onScroll() {
           var max = document.body.scrollHeight - window.innerHeight;
@@ -655,7 +701,7 @@
                 }
               });
             },
-            { threshold: 0.16 },
+            { threshold: 0.12 },
           );
           reveals.forEach(function (el) {
             io.observe(el);
@@ -669,10 +715,11 @@
         /* ---------- bokeh particles in hero ---------- */
         var bokehLayer = document.getElementById("bokehLayer");
         if (bokehLayer && !reduceMotion) {
-          for (var i = 0; i < 14; i++) {
+          var count = window.innerWidth < 600 ? 8 : 14;
+          for (var i = 0; i < count; i++) {
             var b = document.createElement("div");
             b.className = "bokeh";
-            var size = 6 + Math.random() * 16;
+            var size = 4 + Math.random() * 14;
             b.style.width = size + "px";
             b.style.height = size + "px";
             b.style.left = Math.random() * 100 + "%";
@@ -727,7 +774,7 @@
           if (polaroids.length === 0) return;
 
           const totalPhotos = polaroids.length;
-          const step = 0.15; // ~15% на каждое фото
+          const step = 0.15;
           let activeIndex = Math.min(
             totalPhotos - 1,
             Math.floor(scrollPercent / step),
@@ -844,7 +891,7 @@
         function startMusic() {
           if (!bgMusic) initMusic();
           if (!bgMusic) return;
-          bgMusic.play().catch(() => {});
+          bgMusic.play().catch(function () {});
           fade(1);
           isPlaying = true;
           musicToggle.classList.add("playing");
@@ -860,7 +907,7 @@
         document.addEventListener("visibilitychange", function () {
           if (document.hidden && isPlaying) bgMusic.pause();
           else if (!document.hidden && isPlaying)
-            bgMusic.play().catch(() => {});
+            bgMusic.play().catch(function () {});
         });
 
         initMusic();
@@ -876,6 +923,23 @@
           splash.classList.add("hide");
           startMusic();
         });
+
+        // Обработка свайпа для закрытия сплеша
+        var touchStartY = 0;
+        splash.addEventListener("touchstart", function (e) {
+          touchStartY = e.touches[0].clientY;
+        });
+        splash.addEventListener(
+          "touchmove",
+          function (e) {
+            var deltaY = e.touches[0].clientY - touchStartY;
+            if (deltaY > 50) {
+              splash.classList.add("hide");
+              startMusic();
+            }
+          },
+          { passive: true },
+        );
       })();
     </script>
   </body>
