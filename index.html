@@ -161,6 +161,49 @@
     <!-- POLAROID GALLERY -->
     <section class="polaroid-gallery" id="gallery">
       <div class="gallery-track" id="galleryTrack"></div>
+
+      <!-- Кнопки навигации -->
+      <button
+        class="gallery-nav gallery-prev"
+        id="galleryPrev"
+        aria-label="Предыдущее фото"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+      <button
+        class="gallery-nav gallery-next"
+        id="galleryNext"
+        aria-label="Следующее фото"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="9 6 15 12 9 18" />
+        </svg>
+      </button>
+
+      <!-- Индикаторы -->
+      <div class="gallery-dots" id="galleryDots"></div>
+
+      <!-- Прогресс-бар -->
       <div class="gallery-progress">
         <div class="progress-bar" id="progressBar"></div>
       </div>
@@ -729,71 +772,275 @@
         }
 
         /* ============ POLAROID GALLERY ============ */
-        const galleryTrack = document.getElementById("galleryTrack");
-        const progressBar = document.getElementById("progressBar");
+        (function () {
+          const galleryTrack = document.getElementById("galleryTrack");
+          const progressBar = document.getElementById("progressBar");
+          const galleryDots = document.getElementById("galleryDots");
+          const galleryPrev = document.getElementById("galleryPrev");
+          const galleryNext = document.getElementById("galleryNext");
 
-        // Ваши фотографии
-        const photos = [
-          { src: "img/MashaMain.jpg", caption: "Первая встреча" },
-          { src: "img/img2.jpg", caption: "Прогулка по городу" },
-          { src: "img/img3.jpg", caption: "Тёплый вечер" },
-          { src: "img/img4.jpg", caption: "Счастливые моменты" },
-        ];
+          // Ваши фотографии
+          const photos = [
+            { src: "img/MashaMain.jpg", caption: "Первая встреча" },
+            { src: "img/img2.jpg", caption: "Прогулка по городу" },
+            { src: "img/img3.jpg", caption: "Тёплый вечер" },
+            { src: "img/img4.jpg", caption: "Счастливые моменты" },
+          ];
 
-        // Строим галерею
-        photos.forEach((photo, index) => {
-          const polaroid = document.createElement("div");
-          polaroid.className = "polaroid";
-          polaroid.style.transitionDelay = `${index * 0.15}s`;
+          let currentIndex = 0;
+          let isTransitioning = false;
+          let touchStartX = 0; // Объявляем только один раз
+          let isSwiping = false;
 
-          polaroid.innerHTML = `
+          // Строим галерею
+          photos.forEach((photo, index) => {
+            const polaroid = document.createElement("div");
+            polaroid.className = "polaroid";
+            polaroid.dataset.index = index;
+            polaroid.style.transitionDelay = `${index * 0.1}s`;
+
+            polaroid.innerHTML = `
       <div class="polaroid-img">
         <img src="${photo.src}" alt="${photo.caption}" loading="lazy">
       </div>
       <p class="polaroid-caption">${photo.caption}</p>
     `;
-          galleryTrack.appendChild(polaroid);
-        });
+            galleryTrack.appendChild(polaroid);
 
-        // Функция для обновления активного поляроида и прогресса
-        function updateGallery() {
-          const scrollY = window.scrollY;
-          const windowHeight = window.innerHeight;
-          const docHeight =
-            document.documentElement.scrollHeight - windowHeight;
+            // Создаём точку-индикатор
+            const dot = document.createElement("button");
+            dot.className = "gallery-dot";
+            dot.dataset.index = index;
+            dot.setAttribute("aria-label", `Перейти к фото ${index + 1}`);
+            galleryDots.appendChild(dot);
+          });
 
-          const scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
+          // Создаём счётчик
+          const counter = document.createElement("div");
+          counter.className = "gallery-counter";
+          counter.textContent = `1 / ${photos.length}`;
+          galleryTrack.parentElement.appendChild(counter);
 
-          if (progressBar) {
-            progressBar.style.width = `${Math.min(100, scrollPercent * 100)}%`;
+          // Получаем все элементы
+          const polaroids = galleryTrack.querySelectorAll(".polaroid");
+          const dots = galleryDots.querySelectorAll(".gallery-dot");
+
+          // Функция перехода к определённому фото
+          function goToPhoto(index, fromScroll = false) {
+            if (isTransitioning && !fromScroll) return;
+            if (index < 0) index = 0;
+            if (index >= photos.length) index = photos.length - 1;
+            if (index === currentIndex && !fromScroll) return;
+
+            isTransitioning = true;
+            currentIndex = index;
+
+            // Обновляем поляроиды
+            polaroids.forEach((el, i) => {
+              const distance = Math.abs(i - currentIndex);
+              let delay = 0;
+
+              if (i === currentIndex) {
+                el.style.transitionDelay = "0s";
+                el.classList.add("active");
+              } else if (distance === 1) {
+                el.style.transitionDelay = "0.05s";
+                el.classList.remove("active");
+              } else {
+                el.style.transitionDelay = "0.1s";
+                el.classList.remove("active");
+              }
+            });
+
+            // Обновляем точки
+            dots.forEach((dot, i) => {
+              if (i === currentIndex) {
+                dot.classList.add("active");
+              } else {
+                dot.classList.remove("active");
+              }
+            });
+
+            // Обновляем счётчик
+            counter.textContent = `${currentIndex + 1} / ${photos.length}`;
+
+            // Обновляем прогресс-бар
+            const progress = ((currentIndex + 1) / photos.length) * 100;
+            if (progressBar) {
+              progressBar.style.width = `${Math.min(100, progress)}%`;
+            }
+
+            // Снимаем блокировку после анимации
+            setTimeout(() => {
+              isTransitioning = false;
+            }, 400);
           }
 
-          const polaroids = galleryTrack.querySelectorAll(".polaroid");
-          if (polaroids.length === 0) return;
+          // Функция для следующего фото
+          function nextPhoto() {
+            if (isTransitioning) return;
+            const next = currentIndex + 1;
+            if (next < photos.length) {
+              goToPhoto(next);
+            }
+          }
 
-          const totalPhotos = polaroids.length;
-          const step = 0.15;
-          let activeIndex = Math.min(
-            totalPhotos - 1,
-            Math.floor(scrollPercent / step),
-          );
+          // Функция для предыдущего фото
+          function prevPhoto() {
+            if (isTransitioning) return;
+            const prev = currentIndex - 1;
+            if (prev >= 0) {
+              goToPhoto(prev);
+            }
+          }
 
-          if (scrollPercent < 0.01) activeIndex = 0;
-          if (scrollPercent > 0.99) activeIndex = totalPhotos - 1;
+          // Обработчики для кнопок
+          galleryNext.addEventListener("click", nextPhoto);
+          galleryPrev.addEventListener("click", prevPhoto);
 
-          polaroids.forEach((el, i) => {
-            if (i === activeIndex) {
-              el.classList.add("active");
-            } else {
-              el.classList.remove("active");
+          // Обработчики для точек
+          dots.forEach((dot) => {
+            dot.addEventListener("click", function () {
+              const index = parseInt(this.dataset.index);
+              goToPhoto(index);
+            });
+          });
+
+          // Клавиатурная навигация
+          document.addEventListener("keydown", function (e) {
+            const gallery = document.getElementById("gallery");
+            const rect = gallery.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (isVisible) {
+              if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+                e.preventDefault();
+                nextPhoto();
+              } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+                e.preventDefault();
+                prevPhoto();
+              }
             }
           });
-        }
 
-        window.addEventListener("scroll", updateGallery, { passive: true });
-        window.addEventListener("load", updateGallery);
-        window.addEventListener("resize", updateGallery, { passive: true });
+          // Свайпы на мобильных (используем ту же переменную touchStartX)
+          galleryTrack.addEventListener(
+            "touchstart",
+            function (e) {
+              touchStartX = e.changedTouches[0].screenX;
+              isSwiping = true;
+            },
+            { passive: true },
+          );
 
+          galleryTrack.addEventListener(
+            "touchmove",
+            function (e) {
+              if (!isSwiping) return;
+              const touchEndX = e.changedTouches[0].screenX;
+              const touchEndY = e.changedTouches[0].screenY;
+              const deltaX = touchEndX - touchStartX;
+              const deltaY = touchEndY - touchStartY;
+
+              if (
+                Math.abs(deltaX) > Math.abs(deltaY) &&
+                Math.abs(deltaX) > 30
+              ) {
+                e.preventDefault();
+                if (deltaX > 0) {
+                  prevPhoto();
+                } else {
+                  nextPhoto();
+                }
+                isSwiping = false;
+              }
+            },
+            { passive: false },
+          );
+
+          galleryTrack.addEventListener(
+            "touchend",
+            function () {
+              isSwiping = false;
+            },
+            { passive: true },
+          );
+
+          // Функция обновления при скролле
+          function updateGalleryFromScroll() {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const docHeight =
+              document.documentElement.scrollHeight - windowHeight;
+
+            const scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
+
+            const totalPhotos = photos.length;
+            const step = 0.12;
+            let targetIndex = Math.floor(scrollPercent / step);
+            targetIndex = Math.max(0, Math.min(totalPhotos - 1, targetIndex));
+
+            if (targetIndex !== currentIndex && !isTransitioning) {
+              const gallery = document.getElementById("gallery");
+              const rect = gallery.getBoundingClientRect();
+              const isVisible =
+                rect.top < window.innerHeight * 1.2 &&
+                rect.bottom > -window.innerHeight * 0.2;
+
+              if (isVisible) {
+                goToPhoto(targetIndex, true);
+              }
+            }
+          }
+
+          // Обновление прогресс-бара при скролле
+          function updateProgressBar() {
+            const scrollY = window.scrollY;
+            const docHeight =
+              document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? scrollY / docHeight : 0;
+
+            if (progressBar && !isTransitioning) {
+              const progress = Math.min(100, scrollPercent * 100);
+              progressBar.style.width = `${progress}%`;
+            }
+          }
+
+          // Запускаем обновления
+          window.addEventListener(
+            "scroll",
+            function () {
+              updateGalleryFromScroll();
+              updateProgressBar();
+            },
+            { passive: true },
+          );
+
+          // Инициализация
+          window.addEventListener("load", function () {
+            setTimeout(() => {
+              goToPhoto(0);
+            }, 200);
+            updateProgressBar();
+          });
+
+          window.addEventListener(
+            "resize",
+            function () {
+              updateProgressBar();
+            },
+            { passive: true },
+          );
+
+          // Экспортируем функции для использования в консоли
+          window.gallery = {
+            goTo: goToPhoto,
+            next: nextPhoto,
+            prev: prevPhoto,
+            current: () => currentIndex,
+            total: photos.length,
+          };
+        })();
         /* ---------- countdown to the wedding day ---------- */
         var WEDDING_TS = new Date("2026-08-20T13:00:00+08:00").getTime();
         var cdDays = document.getElementById("cdDays");

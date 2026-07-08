@@ -564,11 +564,11 @@ header {
 /* ============ POLAROID GALLERY ============ */
 .polaroid-gallery {
   position: relative;
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 16px;
+  padding: 60px 20px;
   background: var(--bg-secondary);
   overflow: hidden;
   border-top: 1px solid var(--border-color);
@@ -582,15 +582,20 @@ header {
   position: relative;
   width: 100%;
   max-width: 1200px;
-  height: 70vh;
-  max-height: 600px;
+  height: 80vh;
+  max-height: 650px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* ===== ПОЛЯРОИДЫ ===== */
 .polaroid {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85) rotate(6deg);
   width: 100%;
   height: 100%;
   display: flex;
@@ -598,49 +603,49 @@ header {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transform: scale(0.85) rotate(6deg) translateY(20px);
   transition:
-    opacity 0.7s cubic-bezier(0.22, 0.68, 0, 1),
-    transform 0.7s cubic-bezier(0.22, 0.68, 0, 1);
+    opacity 0.6s cubic-bezier(0.22, 0.68, 0, 1),
+    transform 0.6s cubic-bezier(0.22, 0.68, 0, 1);
   pointer-events: none;
+  will-change: transform, opacity;
 }
 
 .polaroid.active {
   opacity: 1;
-  transform: scale(1) rotate(0deg) translateY(0);
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
   pointer-events: auto;
   z-index: 10;
 }
 
 .polaroid-img {
   position: relative;
-  width: min(75vw, 400px);
+  width: min(70vw, 450px);
   aspect-ratio: 4 / 5;
   background: var(--polaroid-bg);
-  padding: clamp(8px, 2vw, 12px) clamp(8px, 2vw, 12px) clamp(30px, 6vw, 45px)
-    clamp(8px, 2vw, 12px);
+  padding: clamp(10px, 2.5vw, 16px) clamp(10px, 2.5vw, 16px)
+    clamp(35px, 7vw, 55px) clamp(10px, 2.5vw, 16px);
   box-shadow:
-    0 12px 30px var(--shadow-color),
+    0 20px 50px var(--shadow-color),
     0 0 0 1px var(--border-color);
-  border-radius: 4px;
+  border-radius: 6px;
   transform: rotate(var(--rotation, 0deg));
   transition:
-    transform 0.3s ease,
+    transform 0.4s ease,
     background 0.4s ease,
     box-shadow 0.4s ease;
 }
 
 .polaroid:nth-child(1) .polaroid-img {
-  --rotation: -1.5deg;
+  --rotation: -2.5deg;
 }
 .polaroid:nth-child(2) .polaroid-img {
-  --rotation: 2.5deg;
+  --rotation: 3.5deg;
 }
 .polaroid:nth-child(3) .polaroid-img {
-  --rotation: -1deg;
+  --rotation: -1.5deg;
 }
 .polaroid:nth-child(4) .polaroid-img {
-  --rotation: 2deg;
+  --rotation: 2.5deg;
 }
 
 .polaroid-img img {
@@ -648,36 +653,130 @@ header {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 3px;
   background: #eee;
 }
 
 .polaroid-caption {
   position: absolute;
-  bottom: clamp(6px, 1.5vw, 12px);
-  left: clamp(6px, 1.5vw, 12px);
-  right: clamp(6px, 1.5vw, 12px);
+  bottom: clamp(8px, 2vw, 14px);
+  left: clamp(8px, 2vw, 14px);
+  right: clamp(8px, 2vw, 14px);
   font-family: "EB Garamond", serif;
   font-style: italic;
-  font-size: clamp(0.7rem, 1.6vw, 1rem);
+  font-size: clamp(0.8rem, 1.8vw, 1.1rem);
   color: var(--polaroid-text);
   text-align: center;
   letter-spacing: 0.04em;
   background: var(--polaroid-bg);
-  padding: 3px 0;
+  padding: 4px 0;
   margin: 0;
-  border-radius: 0 0 2px 2px;
+  border-radius: 0 0 3px 3px;
   transition:
     color 0.4s ease,
     background 0.4s ease;
 }
 
-.gallery-progress {
+/* ===== КНОПКИ НАВИГАЦИИ ===== */
+.gallery-nav {
   position: absolute;
-  bottom: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  touch-action: manipulation;
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.gallery-nav:hover {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.gallery-nav:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+.gallery-nav svg {
+  width: 20px;
+  height: 20px;
+}
+
+.gallery-prev {
+  left: 20px;
+}
+
+.gallery-next {
+  right: 20px;
+}
+
+/* ===== ИНДИКАТОРЫ (точки) ===== */
+.gallery-dots {
+  position: absolute;
+  bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(150px, 50vw);
+  z-index: 25;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 16px;
+  background: var(--bg-primary);
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  padding: 0;
+  touch-action: manipulation;
+}
+
+.gallery-dot.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: scale(1.2);
+  box-shadow: 0 0 12px rgba(185, 154, 99, 0.3);
+}
+
+.gallery-dot:hover {
+  transform: scale(1.1);
+}
+
+.gallery-dot:active {
+  transform: scale(0.9);
+}
+
+/* ===== ПРОГРЕСС-БАР ===== */
+.gallery-progress {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(200px, 50vw);
   height: 3px;
   background: var(--border-color);
   border-radius: 4px;
@@ -691,32 +790,179 @@ header {
   width: 0%;
   background: var(--gold);
   border-radius: 4px;
-  transition: width 0.1s linear;
+  transition: width 0.15s linear;
 }
 
-@media (min-width: 761px) {
+/* ===== СЧЁТЧИК ФОТО ===== */
+.gallery-counter {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 25;
+  font-family: "Syne", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  background: var(--bg-primary);
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 768px) {
+  .polaroid-gallery {
+    padding: 30px 12px;
+    min-height: 80vh;
+  }
+
+  .gallery-track {
+    height: 70vh;
+    max-height: 500px;
+  }
+
+  .polaroid-img {
+    width: min(80vw, 320px);
+    padding: 8px 8px 32px 8px;
+  }
+
+  .polaroid-caption {
+    font-size: 0.8rem;
+    bottom: 8px;
+  }
+
+  .gallery-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gallery-nav svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .gallery-prev {
+    left: 10px;
+  }
+
+  .gallery-next {
+    right: 10px;
+  }
+
+  .gallery-dots {
+    bottom: 70px;
+    gap: 8px;
+    padding: 6px 12px;
+  }
+
+  .gallery-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .gallery-progress {
+    bottom: 25px;
+    width: 120px;
+  }
+
+  .gallery-counter {
+    font-size: 11px;
+    top: 15px;
+    right: 15px;
+    padding: 3px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .polaroid-gallery {
+    padding: 20px 8px;
+    min-height: 70vh;
+  }
+
+  .gallery-track {
+    height: 60vh;
+    max-height: 420px;
+  }
+
+  .polaroid-img {
+    width: 85vw;
+    padding: 6px 6px 28px 6px;
+  }
+
+  .polaroid-caption {
+    font-size: 0.7rem;
+    bottom: 6px;
+  }
+
+  .gallery-nav {
+    width: 34px;
+    height: 34px;
+  }
+
+  .gallery-nav svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .gallery-prev {
+    left: 6px;
+  }
+
+  .gallery-next {
+    right: 6px;
+  }
+
+  .gallery-dots {
+    bottom: 60px;
+    gap: 6px;
+    padding: 4px 10px;
+  }
+
+  .gallery-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .gallery-progress {
+    bottom: 20px;
+    width: 100px;
+  }
+
+  .gallery-counter {
+    font-size: 10px;
+    top: 10px;
+    right: 10px;
+    padding: 2px 8px;
+  }
+}
+
+/* Для landscape на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
   .polaroid-gallery {
     min-height: 100vh;
-    padding: 60px 20px;
+    padding: 20px 10px;
   }
+
   .gallery-track {
-    height: 600px;
-    max-height: 600px;
+    height: 85vh;
+    max-height: 400px;
   }
+
   .polaroid-img {
-    width: min(80vw, 500px);
-    padding: 12px 12px 45px 12px;
+    width: min(40vw, 280px);
   }
-  .polaroid-caption {
-    font-size: 1rem;
-    bottom: 12px;
+
+  .gallery-dots {
+    bottom: 55px;
   }
+
   .gallery-progress {
-    width: 200px;
-    bottom: 30px;
+    bottom: 20px;
   }
 }
-
 /* ============ countdown ============ */
 .countdown {
   text-align: center;
